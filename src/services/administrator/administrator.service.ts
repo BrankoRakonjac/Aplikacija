@@ -9,4 +9,12 @@ export class AdministratorService {
         @InjectRepository(Administrator) 
         private readonly administrator: Repository<Administrator>
     ){}
+
+    getAll(): Promise<Administrator[]>{
+        return this.administrator.find();
+    }
+
+    getById(id: number): Promise<Administrator>{
+        return this.administrator.findOne(id);
+    }
 }
