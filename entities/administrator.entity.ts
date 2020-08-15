@@ -6,10 +6,10 @@ export class Administrator {
     administratorId: number;
     
     
-    @Column({ type: 'varchar', lenght: '32', unique: true})
+    @Column({ type: "varchar", length: '32', unique: true})
     username: string;
 
 
-    @Column({ name: 'password_hash' ,type: 'varchar' , lenght: '128'})
+    @Column({ name: 'password_hash' ,type: 'varchar' , length: '128'})
     passwordHash: string;
 }
