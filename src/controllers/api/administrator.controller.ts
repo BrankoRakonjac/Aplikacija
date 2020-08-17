@@ -17,8 +17,7 @@ export class AdministratorController{
       @Get()
       getAll(): Promise<Administrator[]>{
         return this.administratorService.getAll();
-    
-      }
+    }
 
       @Get(':id')
         getById( @Param('id') administratorId: number): Promise<Administrator | ApiResponse>{
@@ -28,19 +27,20 @@ export class AdministratorController{
             if(admin === undefined){
                 resolve(new ApiResponse("error", -1002));
             }
-
-            resolve(admin);
+         resolve(admin);
         });
-    
-      }
+     }
 
 
-      @Put()
+     
+     @Put()
       add(@Body() data: AddAdministratorDto): Promise<Administrator | ApiResponse>
       {
          return this.administratorService.add(data);
       }
 
+      
+      
       @Post(':id')
       edit(@Param('id') id: number, @Body() data: EditAdministratorDto): Promise<Administrator | ApiResponse>{
           return this.administratorService.editById(id,data);
