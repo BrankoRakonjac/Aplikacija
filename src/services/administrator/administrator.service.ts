@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { AddAdministratorDto } from 'src/dtos/administrator/add.administrator.dto';
 import { EditAdministratorDto } from 'src/dtos/administrator/edit.administrator.dto';
 import { ApiResponse } from 'src/misc/api.response.class';
+import * as crypto from 'crypto';
 
 
 
@@ -18,6 +19,17 @@ export class AdministratorService {
 
     getAll(): Promise<Administrator[]>{
         return this.administrator.find();
+    }
+
+    async getByUsername(username: string):Promise< Administrator | null>{
+        const admin = await this.administrator.findOne({
+            username: username
+        });
+
+        if(admin){
+            return admin;
+        }
+        return null;
     }
 
     getById(id: number): Promise<Administrator>{
