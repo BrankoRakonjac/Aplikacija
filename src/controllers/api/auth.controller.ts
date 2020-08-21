@@ -39,18 +39,12 @@ return new Promise(resolve =>{
         let sada = new Date();
         sada.setDate(sada.getDate() +14);
         const istekTimestamp = sada.getTime() / 1000;
-        jwtData.ext = istekTimestamp;
+        jwtData.exp = istekTimestamp;
 
         jwtData.ip = req.ip.toString();
         jwtData.ua = req.headers["user-agent"];
 
 
-
-                            
-
-
-
-    
         let token: string =jwt.sign(jwtData.toPlainObject(), jwtSecret);
 
         const responseObject = new LoginInfoAdministratorDto(
