@@ -24,6 +24,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
 import { PhotoService } from './services/photo/photo.service';
 import { FeatureService } from './services/feature/feature.service';
 import { FeatureController } from './controllers/api/feature.controler';
+import { UserService } from './services/user/user.service';
 
 
 
@@ -85,6 +86,7 @@ import { FeatureController } from './controllers/api/feature.controler';
     ArticleService,
     PhotoService,
     FeatureService,
+    UserService
 
 
   ],
