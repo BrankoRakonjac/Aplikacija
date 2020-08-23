@@ -6,6 +6,7 @@ import { JwtDataDto } from "src/dtos/auth/jwt.data.dto";
 import { jwtSecret } from "config/jwt.secret";
 import { UserService } from "src/services/user/user.service";
 
+
 @Injectable()
 export class AuthMiddleware implements NestMiddleware{
     constructor(
@@ -57,6 +58,7 @@ export class AuthMiddleware implements NestMiddleware{
        if(!administrator){
         throw new HttpException('Account not found',HttpStatus.UNAUTHORIZED);
        }
+
     }else if(jwtData.role === "user"){
         const user = await this.userServis.getById(jwtData.id);
         if(!user){
@@ -70,5 +72,9 @@ export class AuthMiddleware implements NestMiddleware{
         throw new HttpException('The token has expired',HttpStatus.UNAUTHORIZED);
         next();
     }
+
+    req.token = jwtData;
+
+    next();
 
 }}
