@@ -7,7 +7,7 @@ import { Article } from "src/entities/article.entity";
 import { Order } from "src/entities/order.entity";
 
 @Injectable()
-export class CartServis {
+export class CartService {
     constructor(
         @InjectRepository(Cart) 
         private readonly cart: Repository<Cart>,
@@ -15,13 +15,8 @@ export class CartServis {
         @InjectRepository(CartArticle) 
         private readonly cartArticle: Repository<CartArticle>,
 
-        @InjectRepository(Article) 
-        private readonly article: Repository<Article>,
-
-        @InjectRepository(Order) 
-        private readonly order: Repository<Order>,
-
-
+       
+       
 
 
 
@@ -88,6 +83,7 @@ export class CartServis {
                 "cartArticles",
                 "cartArticles.article",
                 "cartArticles.article.category",
+                "cartArticles.article.articlePrices",
 
             ],
         });
