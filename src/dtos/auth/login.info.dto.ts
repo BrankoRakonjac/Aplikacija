@@ -13,3 +13,4 @@ export class LoginInfoDto {
         this.refreshTokenExpiresAt = refreshTokenExpiresAt;
     }
 }
+

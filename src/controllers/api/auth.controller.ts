@@ -210,10 +210,12 @@ export class AuthController {
     private getIsoDate(timestamp: number): string {
         const date = new Date();
         date.setTime(timestamp * 1000);
-        return date.toString();
+        return date.toString();      // ovde treba da ide  return date.toISOString(); 
     }
 
     private getDatabseDateFormat(isoFormat: string): string {
         return isoFormat.substr(0, 19).replace('T', ' ');
     }
 }
+
+

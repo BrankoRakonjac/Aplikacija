@@ -29,4 +29,6 @@ import {
     @Validator.IsIn([ 0, 1 ])
     isValid: number;
   }
+
+  
   
