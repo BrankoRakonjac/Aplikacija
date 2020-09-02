@@ -203,19 +203,14 @@ export class ArticleService extends TypeOrmCrudService<Article>{
         builder.skip(page * perPage);
         builder.take(perPage);
 
-        let articleIds = await (await builder.getMany()).map(article => article.articleId);
+        let article = await builder.getMany();
+
+        if(article.length === 0){
+            return new ApiResponse('ok', 0,'no articles found for these search parameter')
+        }
+
+        return article;
 
         
-
-        return await this.article.find({
-            where: {articleId: In(articleIds)},
-            relations:[
-                "category",
-                "articleFeatures",
-                "features",
-                "articlePrices",
-                "photos"
-            ]
-        });
     }
 }

@@ -33,6 +33,7 @@ import { MailConfig } from 'config/mail.config';
 import { OrderMailer } from './services/order/order.mailer.service';
 import { AdministratorOrderController } from './controllers/api/administrator.order.controller';
 import { UserToken } from './entities/user-token.entity';
+import { AdministratorToken } from './entities/administrator-token.entity';
 
 
 
@@ -58,7 +59,8 @@ import { UserToken } from './entities/user-token.entity';
         Order,
         Photo,
         User,
-        UserToken
+        UserToken,
+        AdministratorToken
       ]
 
     }),
@@ -74,7 +76,8 @@ import { UserToken } from './entities/user-token.entity';
         Order,
         Photo,
         User,
-        UserToken
+        UserToken,
+        AdministratorToken,
       
       
     ]),

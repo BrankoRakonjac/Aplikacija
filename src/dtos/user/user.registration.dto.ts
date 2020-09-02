@@ -1,11 +1,11 @@
 import * as Validator from 'class-validator';
 
-export class UserRegistrationDto{
+export class UserRegistrationDto {
     @Validator.IsNotEmpty()
     @Validator.IsEmail({
-      allow_ip_domain: false,
-      allow_utf8_local_part: true,
-     require_tld: true,
+        allow_ip_domain: false,
+        allow_utf8_local_part: true,
+        require_tld: true,
     })
     email: string;
 
@@ -17,7 +17,7 @@ export class UserRegistrationDto{
     @Validator.IsNotEmpty()
     @Validator.IsString()
     @Validator.Length(2, 64)
-    forname:string;
+    forename: string;
 
     @Validator.IsNotEmpty()
     @Validator.IsString()

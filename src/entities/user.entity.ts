@@ -3,11 +3,10 @@ import {
   Entity,
   Index,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { Cart } from "./cart.entity";
 import * as Validator from 'class-validator';
-
 
 @Index("uq_user_email", ["email"], { unique: true })
 @Index("uq_user_phone_number", ["phoneNumber"], { unique: true })
@@ -16,8 +15,8 @@ export class User {
   @PrimaryGeneratedColumn({ type: "int", name: "user_id", unsigned: true })
   userId: number;
 
-  @Column( {
-    type :"varchar",
+  @Column({
+    type: "varchar",
     unique: true,
     length: 255
   })
@@ -25,12 +24,12 @@ export class User {
   @Validator.IsEmail({
     allow_ip_domain: false,
     allow_utf8_local_part: true,
-   require_tld: true,
+    require_tld: true,
   })
   email: string;
 
-  @Column( {
-    type :"varchar",
+  @Column({
+    type: "varchar",
     name: "password_hash",
     length: 128
   })
@@ -38,20 +37,20 @@ export class User {
   @Validator.IsHash('sha512')
   passwordHash: string;
 
-  @Column( {type :"varchar",  length: 64})
+  @Column({ type: "varchar", length: 64 })
   @Validator.IsNotEmpty()
   @Validator.IsString()
   @Validator.Length(2, 64)
-  forname: string;
+  forename: string;
 
-  @Column( {type :"varchar",  length: 64})
+  @Column({ type: "varchar", length: 64 })
   @Validator.IsNotEmpty()
   @Validator.IsString()
   @Validator.Length(2, 64)
   surname: string;
 
-  @Column( {
-    type :"varchar",
+  @Column({
+    type: "varchar",
     name: "phone_number",
     unique: true,
     length: 24
@@ -60,12 +59,15 @@ export class User {
   @Validator.IsPhoneNumber(null)
   phoneNumber: string;
 
-  @Column( {type :"text", name: "postal_address" })
+  @Column({ type: "text", name: "postal_address" })
   @Validator.IsNotEmpty()
   @Validator.IsString()
   @Validator.Length(10, 512)
   postalAddress: string;
 
-  @OneToMany(() => Cart, (cart) => cart.user)
+  @OneToMany(
+    () => Cart,
+    cart => cart.user
+  )
   carts: Cart[];
 }

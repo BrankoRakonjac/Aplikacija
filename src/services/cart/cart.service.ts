@@ -47,7 +47,7 @@ export class CartService {
         return cart;
     }
 
-    async createNewCartForIser(userId: number):Promise<Cart>{
+    async createNewCartForUser(userId: number):Promise<Cart>{
         const newCart: Cart = new Cart();
         newCart.userId = userId;
         return await this.cart.save(newCart);
