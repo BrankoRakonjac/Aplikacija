@@ -1,7 +1,7 @@
-export default class DistinctFeatureValuesDto{
-    features:{
+export default class DistinctFeatureValuesDto {
+    features: {
         featureId: number;
         name: string;
-        values: string[];
+        values: string[]; 
     }[];
 }
