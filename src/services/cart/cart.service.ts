@@ -9,102 +9,90 @@ import { Order } from "src/entities/order.entity";
 @Injectable()
 export class CartService {
     constructor(
-        @InjectRepository(Cart) 
+        @InjectRepository(Cart)
         private readonly cart: Repository<Cart>,
-
-        @InjectRepository(CartArticle) 
+ 
+        @InjectRepository(CartArticle)
         private readonly cartArticle: Repository<CartArticle>,
+    ) { }
 
-       
-       
-
-
-
-    ){}
-
-    async getLastActiveCartByUserId(userId: number): Promise<Cart | null>{
+    async getLastActiveCartByUserId(userId: number): Promise<Cart | null> {
         const carts = await this.cart.find({
-            where:{
-                userId: userId
+            where: {
+                userId: userId,
             },
-            order:{
-                createdAt:"DESC",
+            order: {
+                createdAt: "DESC",
             },
             take: 1,
-            relations:["order"],
+            relations: [ "order" ],
         });
 
-        if(!carts || carts.length ===0){
+        if (!carts || carts.length === 0) {
             return null;
         }
 
         const cart = carts[0];
 
-        if(cart.order !== null){
-            return null
+        if (cart.order !== null) {
+            return null;
         }
 
         return cart;
     }
 
-    async createNewCartForUser(userId: number):Promise<Cart>{
+    async createNewCartForUser(userId: number): Promise<Cart> {
         const newCart: Cart = new Cart();
         newCart.userId = userId;
         return await this.cart.save(newCart);
     }
 
-    async addArticleToCart(cartId: number, articleId: number, quantity: number): Promise<Cart>{
-        let record:CartArticle = await this.cartArticle.findOne({
+    async addArticleToCart(cartId: number, articleId: number, quantity: number): Promise<Cart> {
+        let record: CartArticle = await this.cartArticle.findOne({
             cartId: cartId,
             articleId: articleId,
-
         });
 
-        if(!record){
+        if (!record) {
             record = new CartArticle();
             record.cartId = cartId;
             record.articleId = articleId;
             record.quantity = quantity;
-            }else{
-                record.quantity += quantity;
-            }
+        } else {
+            record.quantity += quantity;
+        }
 
-             await this.cartArticle.save(record);
+        await this.cartArticle.save(record);
 
-            
-            return this.getById(cartId);
-
+        return this.getById(cartId);
     }
 
-    async getById(cartId: number):Promise<Cart>{
+    async getById(cartId: number): Promise<Cart> {
         return await this.cart.findOne(cartId, {
-            relations:[
+            relations: [
                 "user",
                 "cartArticles",
                 "cartArticles.article",
                 "cartArticles.article.category",
                 "cartArticles.article.articlePrices",
-
             ],
         });
     }
 
-    async chnageQuantity(cartId: number, articleId: number , newQuantity: number): Promise<Cart>{
-        let record:CartArticle = await this.cartArticle.findOne({
+    async changeQuantity(cartId: number, articleId: number, newQuantity: number): Promise<Cart> {
+        let record: CartArticle = await this.cartArticle.findOne({
             cartId: cartId,
             articleId: articleId,
-
         });
 
-        if(!record){
-            return await this.getById(cartId);
-        }
-        record.quantity = newQuantity;
+        if (record) {
+            record.quantity = newQuantity;
 
-        if( record.quantity ===0){
-            await this.cartArticle.delete(record.cartArticleId);
-        }else{
-           await this.cartArticle.save(record);
+            if (record.quantity === 0) {
+                await this.cartArticle.delete(record.cartArticleId);
+            } else {
+                await this.cartArticle.save(record);
+            }
         }
 
         return await this.getById(cartId);

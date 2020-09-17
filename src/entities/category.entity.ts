@@ -5,7 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { Article } from "./article.entity";
 import { Feature } from "./feature.entity";
@@ -19,18 +19,17 @@ export class Category {
   @PrimaryGeneratedColumn({ type: "int", name: "category_id", unsigned: true })
   categoryId: number;
 
-  @Column( {
-    type: "varchar", 
+  @Column({
+    type: "varchar",
     unique: true,
     length: 32
-    
   })
   @Validator.IsNotEmpty()
   @Validator.IsString()
   @Validator.Length(5, 32)
   name: string;
 
-  @Column( {
+  @Column({
     type: "varchar",
     name: "image_path",
     unique: true,
@@ -41,7 +40,7 @@ export class Category {
   @Validator.Length(1, 128)
   imagePath: string;
 
-  @Column( {
+  @Column({
     type: "int",
     name: "parent__category_id",
     nullable: true,
@@ -49,21 +48,31 @@ export class Category {
   })
   parentCategoryId: number | null;
 
-  @OneToMany(() => Article, (article) => article.category)
+  @OneToMany(
+    () => Article,
+    article => article.category
+  )
   articles: Article[];
 
-  @ManyToOne(() => Category, (category) => category.categories, {
-    onDelete: "NO ACTION",
-    onUpdate: "CASCADE",
-  })
+  @ManyToOne(
+    () => Category,
+    category => category.categories,
+    { onDelete: "NO ACTION", onUpdate: "CASCADE" }
+  )
   @JoinColumn([
-    { name: "parent__category_id", referencedColumnName: "categoryId" },
+    { name: "parent__category_id", referencedColumnName: "categoryId" }
   ])
   parentCategory: Category;
 
-  @OneToMany(() => Category, (category) => category.parentCategory)
+  @OneToMany(
+    () => Category,
+    category => category.parentCategory
+  )
   categories: Category[];
 
-  @OneToMany(() => Feature, (feature) => feature.category)
+  @OneToMany(
+    () => Feature,
+    feature => feature.category
+  )
   features: Feature[];
 }

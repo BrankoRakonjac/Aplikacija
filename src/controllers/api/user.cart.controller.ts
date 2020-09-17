@@ -31,7 +31,6 @@ export class UserCartController {
 
    
 
-    // GET http://localhost:3000/api/user/cart/
     @Get()
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('user')
@@ -39,7 +38,6 @@ export class UserCartController {
         return await this.getActiveCartForUserId(req.token.id);
     }
 
-    // POST http://localhost:3000/api/user/cart/addToCart/
     @Post('addToCart')
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('user')
@@ -48,16 +46,14 @@ export class UserCartController {
         return await this.cartService.addArticleToCart(cart.cartId, data.articleId, data.quantity);
     }
 
-    // PATCH http://localhost:3000/api/user/cart/
     @Patch()
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('user')
     async changeQuantity(@Body() data: EditArticleInCartDto, @Req() req: Request): Promise<Cart> {
         const cart = await this.getActiveCartForUserId(req.token.id);
-        return await this.cartService.chnageQuantity(cart.cartId, data.articleId, data.quantity);
+        return await this.cartService.changeQuantity(cart.cartId, data.articleId, data.quantity);
     }
 
-    // POST http://localhost:3000/api/user/cart/makeOrder/
     @Post('makeOrder')
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('user')
@@ -74,7 +70,6 @@ export class UserCartController {
         return order;
     }
 
-    // POST http://localhost:3000/api/user/cart/orders/
     @Get('orders')
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('user')

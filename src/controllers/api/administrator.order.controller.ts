@@ -12,7 +12,6 @@ export class AdministratorOrderController {
         private orderService: OrderService,
     ) { }
 
-    // GET http://localhost:3000/api/order/
     @Get()
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('administrator')
@@ -20,7 +19,6 @@ export class AdministratorOrderController {
         return await this.orderService.getAll();
     }
 
-    // GET http://localhost:3000/api/order/:id/
     @Get(':id')
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('administrator')
@@ -34,7 +32,6 @@ export class AdministratorOrderController {
         return order;
     }
 
-    // PATCH http://localhost:3000/api/order/:id/
     @Patch(':id')
     @UseGuards(RoleCheckedGuard)
     @AllowToRoles('administrator')

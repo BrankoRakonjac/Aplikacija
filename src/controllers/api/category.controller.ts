@@ -1,89 +1,78 @@
 import { Controller, UseGuards } from "@nestjs/common";
-import {Crud} from "@nestjsx/crud";
+import { Crud } from "@nestjsx/crud";
 import { Category } from "src/entities/category.entity";
 import { CategoryService } from "src/services/category/category.service";
-import { AllowToRoles } from "src/misc/allow.to.roles.descriptor";
 import { RoleCheckedGuard } from "src/misc/role.checker.guard";
+import { AllowToRoles } from "src/misc/allow.to.roles.descriptor";
 
 @Controller('api/category')
-@Crud ({
-    model:{
+@Crud({
+    model: {
         type: Category
     },
     params: {
-        id:{
+        id: {
             field: 'categoryId',
             type: 'number',
             primary: true
         }
     },
-    query:{
-        join:{
-            categories:{
-              eager: true
+    query: {
+        join: {
+            categories: {
+                eager: true
             },
-            parentCategory:{
-                eager: false,
+            features: {
+                eager: true
             },
-            features:{
-                eager:true,
+            parentCategory: {
+                eager: false
             },
-            articles:{
-                eager:false
+            articles: {
+                eager: false
             }
         }
-    }
-    ,
-    routes:{
-        only:[
+    },
+    routes: {
+        only: [
             "createOneBase",
             "createManyBase",
             "updateOneBase",
             "getManyBase",
             "getOneBase",
-            
         ],
         createOneBase: {
             decorators: [
                 UseGuards(RoleCheckedGuard),
                 AllowToRoles('administrator'),
-
             ],
         },
-        createManyBase:{
+        createManyBase: {
             decorators: [
                 UseGuards(RoleCheckedGuard),
                 AllowToRoles('administrator'),
-
             ],
         },
-        updateOneBase:{
+        updateOneBase: {
             decorators: [
                 UseGuards(RoleCheckedGuard),
                 AllowToRoles('administrator'),
-
             ],
         },
         getManyBase: {
             decorators: [
                 UseGuards(RoleCheckedGuard),
-                AllowToRoles('administrator','user'),
-
+                AllowToRoles('administrator', 'user'),
             ],
         },
-        getOneBase:{
+        getOneBase: {
             decorators: [
                 UseGuards(RoleCheckedGuard),
-                AllowToRoles('administrator','user'),
-
+                AllowToRoles('administrator', 'user'),
             ],
         },
-
-    }
-
+    },
 })
-export class CategoryController{
-    constructor(public service: CategoryService){
-
-    }
+export class CategoryController {
+    constructor(public service: CategoryService) { }
 }
