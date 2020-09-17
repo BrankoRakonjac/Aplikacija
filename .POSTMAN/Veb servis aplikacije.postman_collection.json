@@ -651,7 +651,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/article/2/uploadPhoto/",
+							"raw": "http://localhost:3000/api/article/3/uploadPhoto/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -660,7 +660,7 @@
 							"path": [
 								"api",
 								"article",
-								"2",
+								"3",
 								"uploadPhoto",
 								""
 							]
@@ -802,6 +802,37 @@
 						"header": [],
 						"url": {
 							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get many single article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/article/?filter=categoryId||$eq||5&sort=name,ASC",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								""
+							],
+							"query": [
+								{
+									"key": "filter",
+									"value": "categoryId||$eq||5"
+								},
+								{
+									"key": "sort",
+									"value": "name,ASC"
+								}
+							]
 						}
 					},
 					"response": []
@@ -1015,6 +1046,37 @@
 							"body": "{\n    \"articleId\": 2,\n    \"name\": \"ACME HD11 1024GB\",\n    \"categoryId\": 5,\n    \"excerpt\": \"neki kratki tekst 2\",\n    \"description\": \"neki malo duzi tekst o proizvodu\",\n    \"status\": \"visible\",\n    \"isPromoted\": 1,\n    \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n    \"category\": {\n        \"categoryId\": 5,\n        \"name\": \"hard\",\n        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n        \"parentCategoryId\": 4\n    },\n    \"articleFeatures\": [\n        {\n            \"articleFeatureId\": 6,\n            \"articleId\": 2,\n            \"featureId\": 1,\n            \"value\": \"1024GB\"\n        },\n        {\n            \"articleFeatureId\": 7,\n            \"articleId\": 2,\n            \"featureId\": 2,\n            \"value\": \"SATA 3.0\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Kapacitet\",\n            \"categoryId\": 5\n        },\n        {\n            \"featureId\": 2,\n            \"name\": \"Tehnologija\",\n            \"categoryId\": 5\n        }\n    ],\n    \"articlePrices\": [\n        {\n            \"articlePriceId\": 3,\n            \"articleId\": 2,\n            \"price\": \"56.89\",\n            \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n        },\n        {\n            \"articlePriceId\": 4,\n            \"articleId\": 2,\n            \"price\": \"57.11\",\n            \"createdAt\": \"2020-08-22T14:54:16.000Z\"\n        }\n    ]\n}"
 						}
 					]
+				},
+				{
+					"name": "Search articles",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryId\": 5,\r\n    \"keywords\": \"GB\",\r\n    \"priceMin\": 43,\r\n    \"priceMax\": 59,\r\n    \"features\":[{\r\n        \"featureId\": 2,\r\n        \"values\":[\"SATA 3.0\", \"SATA 3.1\"]\r\n     }],\r\n     \"orderBy\": \"price\",\r\n     \"orderDirection\": \"ASC\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/article/search/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"article",
+								"search",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -1057,7 +1119,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}"
+							"raw": "{\r\n    \"username\": \"adminnn\",\r\n    \"password\": \"admin123\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/auth/administrator/login/",
@@ -1273,7 +1335,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"test@test.rs\",\r\n    \"password\": \"abc\"\r\n}"
+							"raw": "{\r\n    \"email\": \"test@test.rs\",\r\n    \"password\": \"test@test.rs\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:3000/auth/user/login/",
@@ -1299,7 +1361,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"test@test.rs\",\r\n    \"password\": \"abc\",\r\n    \"forname\": \"Pera\",\r\n    \"surname\": \"Peric\",\r\n    \"phoneNumber\": \"+381645669454\",\r\n    \"postalAddress\": \"velislava t.\"\r\n}",
+							"raw": "{\r\n    \"email\": \"test@test123.rs\",\r\n    \"password\": \"brankorakonja\",\r\n    \"forname\": \"brenjo\",\r\n    \"surname\": \"rako\",\r\n    \"phoneNumber\": \"+381645669545\",\r\n    \"postalAddress\": \" Milosa crnjanskog\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1317,6 +1379,37 @@
 								"auth",
 								"user",
 								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh user token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjoxLCJ1c2VybmFtZSI6InRlc3RAdGVzdC5ycyIsImV4dCI6MTYwMTEzOTkyNC4yNDgsImlwIjoiOjoxIiwidWEiOiJQb3N0bWFuUnVudGltZS83LjI2LjMiLCJpYXQiOjE1OTg0NjE1MjR9.oUofKRGx2MQZLUPD_Pw2U4Dtvz60Sj7fTtPn_2c6p4U\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/user/refresh/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"user",
+								"refresh",
 								""
 							]
 						}
@@ -1683,6 +1776,87 @@
 							"body": "{\n    \"featureId\": 5,\n    \"name\": \"Napon\",\n    \"categoryId\": 2,\n    \"category\": {\n        \"categoryId\": 2,\n        \"name\": \"Kucna elektronika\",\n        \"imagePath\": \"assets/home.jpg\",\n        \"parentCategoryId\": null\n    },\n    \"articles\": []\n}"
 						}
 					]
+				},
+				{
+					"name": "Get distinct values for features of a single category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/feature/values/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"feature",
+								"values",
+								"5",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get distinct values for features of a single category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/feature/values/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"feature",
+										"values",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "191"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bf-G5dyf3q7H77qhWeUSq3UiEPQu2k\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Aug 2020 15:26:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Kapacitet\",\n            \"values\": [\n                \"1024GB\",\n                \"512\"\n            ]\n        },\n        {\n            \"featureId\": 2,\n            \"name\": \"Tehnologija\",\n            \"values\": [\n                \"SATA 3.0\",\n                \"SSD\"\n            ]\n        },\n        {\n            \"featureId\": 3,\n            \"name\": \"Tip\",\n            \"values\": [\n                \"SATA 3.0\"\n            ]\n        }\n    ]\n}"
+						}
+					]
 				}
 			],
 			"event": [
@@ -1708,6 +1882,497 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cart and Order",
+			"item": [
+				{
+					"name": "Get current cart  details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add article to the current cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"articleId\": 1,\r\n    \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/addToCart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								"addToCart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Chabge article quantity in the current cart",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"articleId\": 1,\r\n    \"quantity\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Make an order for the current cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/user/cart/makeOrder/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"user",
+								"cart",
+								"makeOrder",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjoxLCJ1c2VybmFtZSI6InRlc3RAdGVzdC5ycyIsImV4dCI6MTU5OTUwNzg1NS42NjcsImlwIjoiOjoxIiwidWEiOiJQb3N0bWFuUnVudGltZS83LjI2LjMiLCJpYXQiOjE1OTgyOTgyNTV9.HphqO3Gwezz96F0dvpoVolqnptHwAFs44MGhCgMb7vI",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "66b2986f-c29f-478b-b18e-a14bde553cce",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "84c63976-af37-403f-8e3c-8acf60a14fc4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get order information",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/order/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"order",
+								"5",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get order information",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/order/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1492"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d4-wXH2XrsYJBIJC4Z0GXglOKbsZP4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 13:54:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 5,\n    \"createdAt\": \"2020-08-25T23:27:49.000Z\",\n    \"cartId\": 5,\n    \"status\": \"pending\",\n    \"cart\": {\n        \"cartId\": 5,\n        \"userId\": 1,\n        \"createdAt\": \"2020-08-25T23:26:38.000Z\",\n        \"user\": {\n            \"userId\": 1,\n            \"email\": \"test@test.rs\",\n            \"passwordHash\": \"DDAF35A193617ABACC417349AE20413112E6FA4E89A97EA20A9EEEE64B55D39A2192992A274FC1A836BA3C23A3FEEBBD454D4423643CE80E2A9AC94FA54CA49F\",\n            \"forname\": \"Pera\",\n            \"surname\": \"Peric\",\n            \"phoneNumber\": \"+381645669454\",\n            \"postalAddress\": \"velislava t.\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 6,\n                \"cartId\": 5,\n                \"articleId\": 1,\n                \"quantity\": 3,\n                \"article\": {\n                    \"articleId\": 1,\n                    \"name\": \"ACME HDD GB\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"kratak opis\",\n                    \"description\": \"detaljan opis\",\n                    \"status\": \"available\",\n                    \"isPromoted\": 0,\n                    \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"hard\",\n                        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                        \"parentCategoryId\": 4\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 1,\n                            \"articleId\": 1,\n                            \"price\": \"45.00\",\n                            \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 2,\n                            \"articleId\": 1,\n                            \"price\": \"43.00\",\n                            \"createdAt\": \"2020-08-17T14:40:57.000Z\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"cartArticleId\": 7,\n                \"cartId\": 5,\n                \"articleId\": 2,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"ACME HD11 1024GB\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"neki kratki tekst 2\",\n                    \"description\": \"neki malo duzi tekst o proizvodu\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"hard\",\n                        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                        \"parentCategoryId\": 4\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 3,\n                            \"articleId\": 2,\n                            \"price\": \"56.89\",\n                            \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Change order status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newStatus\": \"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/order/5/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"order",
+								"5",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change order status",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"newStatus\": \"rejected\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/order/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1493"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d5-ny61qqZeyVLUjVljAWddK+StQnc\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 13:56:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 5,\n    \"createdAt\": \"2020-08-25T23:27:49.000Z\",\n    \"cartId\": 5,\n    \"status\": \"rejected\",\n    \"cart\": {\n        \"cartId\": 5,\n        \"userId\": 1,\n        \"createdAt\": \"2020-08-25T23:26:38.000Z\",\n        \"user\": {\n            \"userId\": 1,\n            \"email\": \"test@test.rs\",\n            \"passwordHash\": \"DDAF35A193617ABACC417349AE20413112E6FA4E89A97EA20A9EEEE64B55D39A2192992A274FC1A836BA3C23A3FEEBBD454D4423643CE80E2A9AC94FA54CA49F\",\n            \"forname\": \"Pera\",\n            \"surname\": \"Peric\",\n            \"phoneNumber\": \"+381645669454\",\n            \"postalAddress\": \"velislava t.\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 6,\n                \"cartId\": 5,\n                \"articleId\": 1,\n                \"quantity\": 3,\n                \"article\": {\n                    \"articleId\": 1,\n                    \"name\": \"ACME HDD GB\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"kratak opis\",\n                    \"description\": \"detaljan opis\",\n                    \"status\": \"available\",\n                    \"isPromoted\": 0,\n                    \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"hard\",\n                        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                        \"parentCategoryId\": 4\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 1,\n                            \"articleId\": 1,\n                            \"price\": \"45.00\",\n                            \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 2,\n                            \"articleId\": 1,\n                            \"price\": \"43.00\",\n                            \"createdAt\": \"2020-08-17T14:40:57.000Z\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"cartArticleId\": 7,\n                \"cartId\": 5,\n                \"articleId\": 2,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"ACME HD11 1024GB\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"neki kratki tekst 2\",\n                    \"description\": \"neki malo duzi tekst o proizvodu\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"hard\",\n                        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                        \"parentCategoryId\": 4\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 3,\n                            \"articleId\": 2,\n                            \"price\": \"56.89\",\n                            \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						},
+						{
+							"name": "Get order information",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/order/5/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										"5",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1492"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d4-wXH2XrsYJBIJC4Z0GXglOKbsZP4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 26 Aug 2020 13:54:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": 5,\n    \"createdAt\": \"2020-08-25T23:27:49.000Z\",\n    \"cartId\": 5,\n    \"status\": \"pending\",\n    \"cart\": {\n        \"cartId\": 5,\n        \"userId\": 1,\n        \"createdAt\": \"2020-08-25T23:26:38.000Z\",\n        \"user\": {\n            \"userId\": 1,\n            \"email\": \"test@test.rs\",\n            \"passwordHash\": \"DDAF35A193617ABACC417349AE20413112E6FA4E89A97EA20A9EEEE64B55D39A2192992A274FC1A836BA3C23A3FEEBBD454D4423643CE80E2A9AC94FA54CA49F\",\n            \"forname\": \"Pera\",\n            \"surname\": \"Peric\",\n            \"phoneNumber\": \"+381645669454\",\n            \"postalAddress\": \"velislava t.\"\n        },\n        \"cartArticles\": [\n            {\n                \"cartArticleId\": 6,\n                \"cartId\": 5,\n                \"articleId\": 1,\n                \"quantity\": 3,\n                \"article\": {\n                    \"articleId\": 1,\n                    \"name\": \"ACME HDD GB\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"kratak opis\",\n                    \"description\": \"detaljan opis\",\n                    \"status\": \"available\",\n                    \"isPromoted\": 0,\n                    \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"hard\",\n                        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                        \"parentCategoryId\": 4\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 1,\n                            \"articleId\": 1,\n                            \"price\": \"45.00\",\n                            \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                        },\n                        {\n                            \"articlePriceId\": 2,\n                            \"articleId\": 1,\n                            \"price\": \"43.00\",\n                            \"createdAt\": \"2020-08-17T14:40:57.000Z\"\n                        }\n                    ]\n                }\n            },\n            {\n                \"cartArticleId\": 7,\n                \"cartId\": 5,\n                \"articleId\": 2,\n                \"quantity\": 1,\n                \"article\": {\n                    \"articleId\": 2,\n                    \"name\": \"ACME HD11 1024GB\",\n                    \"categoryId\": 5,\n                    \"excerpt\": \"neki kratki tekst 2\",\n                    \"description\": \"neki malo duzi tekst o proizvodu\",\n                    \"status\": \"visible\",\n                    \"isPromoted\": 1,\n                    \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                    \"category\": {\n                        \"categoryId\": 5,\n                        \"name\": \"hard\",\n                        \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                        \"parentCategoryId\": 4\n                    },\n                    \"articlePrices\": [\n                        {\n                            \"articlePriceId\": 3,\n                            \"articleId\": 2,\n                            \"price\": \"56.89\",\n                            \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                        }\n                    ]\n                }\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get all orders",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjo3LCJ1c2VybmFtZSI6ImFkbWlubm4iLCJleHQiOjE1OTk4MzAzNjQuMzI0LCJpcCI6Ijo6MSIsInVhIjoiUG9zdG1hblJ1bnRpbWUvNy4yNi41IiwiaWF0IjoxNTk5ODMwMDY0fQ.nypc9AdaEv3AIDvcrN5uKOLgjadp3uD6oaEW8kufJcM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/order/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"order",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get all orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/api/order/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"order",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "18674"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48f2-ofsPnbldzba9moRWQnWh+TGLprE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Sep 2020 13:15:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"orderId\": 1,\n        \"createdAt\": \"2020-08-24T19:50:48.000Z\",\n        \"cartId\": 1,\n        \"status\": \"shipped\",\n        \"cart\": {\n            \"cartId\": 1,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-24T19:46:08.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 1,\n                    \"cartId\": 1,\n                    \"articleId\": 1,\n                    \"quantity\": 4,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 2,\n        \"createdAt\": \"2020-08-24T21:55:23.000Z\",\n        \"cartId\": 2,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 2,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-24T20:09:29.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 3,\n                    \"cartId\": 2,\n                    \"articleId\": 2,\n                    \"quantity\": 2,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"ACME HD11 1024GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"neki kratki tekst 2\",\n                        \"description\": \"neki malo duzi tekst o proizvodu\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 3,\n                                \"articleId\": 2,\n                                \"price\": \"56.89\",\n                                \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 3,\n        \"createdAt\": \"2020-08-24T21:57:13.000Z\",\n        \"cartId\": 3,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 3,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-24T21:55:29.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 4,\n                    \"cartId\": 3,\n                    \"articleId\": 3,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 3,\n                        \"name\": \"ACME laptop\",\n                        \"categoryId\": 3,\n                        \"excerpt\": \"kratki opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-20T15:13:23.000Z\",\n                        \"category\": {\n                            \"categoryId\": 3,\n                            \"name\": \"Laptop racunari\",\n                            \"imagePath\": \"assets/pc/laptop.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 2,\n                                \"articleId\": 3,\n                                \"price\": \"43.00\",\n                                \"createdAt\": \"2020-08-17T14:40:57.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 3,\n                                \"price\": \"340.00\",\n                                \"createdAt\": \"2020-08-22T14:54:16.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 4,\n        \"createdAt\": \"2020-08-24T22:00:37.000Z\",\n        \"cartId\": 4,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 4,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-24T21:58:54.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 5,\n                    \"cartId\": 4,\n                    \"articleId\": 3,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 3,\n                        \"name\": \"ACME laptop\",\n                        \"categoryId\": 3,\n                        \"excerpt\": \"kratki opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-20T15:13:23.000Z\",\n                        \"category\": {\n                            \"categoryId\": 3,\n                            \"name\": \"Laptop racunari\",\n                            \"imagePath\": \"assets/pc/laptop.jpg\",\n                            \"parentCategoryId\": 1\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 2,\n                                \"articleId\": 3,\n                                \"price\": \"43.00\",\n                                \"createdAt\": \"2020-08-17T14:40:57.000Z\"\n                            },\n                            {\n                                \"articlePriceId\": 4,\n                                \"articleId\": 3,\n                                \"price\": \"340.00\",\n                                \"createdAt\": \"2020-08-22T14:54:16.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 5,\n        \"createdAt\": \"2020-08-25T23:27:49.000Z\",\n        \"cartId\": 5,\n        \"status\": \"rejected\",\n        \"cart\": {\n            \"cartId\": 5,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-25T23:26:38.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 6,\n                    \"cartId\": 5,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 7,\n                    \"cartId\": 5,\n                    \"articleId\": 2,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"ACME HD11 1024GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"neki kratki tekst 2\",\n                        \"description\": \"neki malo duzi tekst o proizvodu\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 3,\n                                \"articleId\": 2,\n                                \"price\": \"56.89\",\n                                \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 6,\n        \"createdAt\": \"2020-08-26T00:02:43.000Z\",\n        \"cartId\": 6,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 6,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:01:44.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 9,\n                    \"cartId\": 6,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                },\n                {\n                    \"cartArticleId\": 8,\n                    \"cartId\": 6,\n                    \"articleId\": 2,\n                    \"quantity\": 1,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"ACME HD11 1024GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"neki kratki tekst 2\",\n                        \"description\": \"neki malo duzi tekst o proizvodu\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 3,\n                                \"articleId\": 2,\n                                \"price\": \"56.89\",\n                                \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 7,\n        \"createdAt\": \"2020-08-26T00:09:22.000Z\",\n        \"cartId\": 7,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 7,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:04:29.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 10,\n                    \"cartId\": 7,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 8,\n        \"createdAt\": \"2020-08-26T00:13:24.000Z\",\n        \"cartId\": 8,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 8,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:13:13.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 11,\n                    \"cartId\": 8,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 9,\n        \"createdAt\": \"2020-08-26T00:20:14.000Z\",\n        \"cartId\": 9,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 9,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:20:00.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 12,\n                    \"cartId\": 9,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 10,\n        \"createdAt\": \"2020-08-26T00:24:45.000Z\",\n        \"cartId\": 10,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 10,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:24:39.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 13,\n                    \"cartId\": 10,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 11,\n        \"createdAt\": \"2020-08-26T00:39:22.000Z\",\n        \"cartId\": 11,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 11,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:39:12.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 14,\n                    \"cartId\": 11,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 12,\n        \"createdAt\": \"2020-08-26T00:45:50.000Z\",\n        \"cartId\": 12,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 12,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:45:40.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 15,\n                    \"cartId\": 12,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 13,\n        \"createdAt\": \"2020-08-26T00:49:00.000Z\",\n        \"cartId\": 13,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 13,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:48:54.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 16,\n                    \"cartId\": 13,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 14,\n        \"createdAt\": \"2020-08-26T00:53:43.000Z\",\n        \"cartId\": 14,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 14,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-26T00:53:38.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 17,\n                    \"cartId\": 14,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 15,\n        \"createdAt\": \"2020-08-31T21:10:42.000Z\",\n        \"cartId\": 15,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 15,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-31T21:10:42.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 30,\n                    \"cartId\": 15,\n                    \"articleId\": 1,\n                    \"quantity\": 5,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 16,\n        \"createdAt\": \"2020-08-31T21:15:20.000Z\",\n        \"cartId\": 16,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 16,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-31T21:15:20.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 31,\n                    \"cartId\": 16,\n                    \"articleId\": 1,\n                    \"quantity\": 2,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 17,\n        \"createdAt\": \"2020-08-31T22:08:26.000Z\",\n        \"cartId\": 17,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 17,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-31T22:08:26.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 32,\n                    \"cartId\": 17,\n                    \"articleId\": 1,\n                    \"quantity\": 3,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 18,\n        \"createdAt\": \"2020-08-31T23:03:05.000Z\",\n        \"cartId\": 18,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 18,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-31T23:03:06.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 33,\n                    \"cartId\": 18,\n                    \"articleId\": 1,\n                    \"quantity\": 2,\n                    \"article\": {\n                        \"articleId\": 1,\n                        \"name\": \"ACME HDD GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"kratak opis\",\n                        \"description\": \"detaljan opis\",\n                        \"status\": \"available\",\n                        \"isPromoted\": 0,\n                        \"createdAt\": \"2020-08-17T00:49:32.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 1,\n                                \"articleId\": 1,\n                                \"price\": \"45.00\",\n                                \"createdAt\": \"2020-08-17T14:40:47.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    },\n    {\n        \"orderId\": 19,\n        \"createdAt\": \"2020-08-31T23:07:56.000Z\",\n        \"cartId\": 19,\n        \"status\": \"pending\",\n        \"cart\": {\n            \"cartId\": 19,\n            \"userId\": 1,\n            \"createdAt\": \"2020-08-31T23:07:57.000Z\",\n            \"user\": {\n                \"userId\": 1,\n                \"email\": \"test@test.rs\",\n                \"passwordHash\": \"8D2F4D9C7F87141F0810F1ACD6C0462FF0319BB049AA88EA4E310649628091DE316CF1392E19AF4F0A327826545F63E4E969838F5E7D572A475DE3255B738ACA\",\n                \"forename\": \"Pera\",\n                \"surname\": \"Peric\",\n                \"phoneNumber\": \"+381645669454\",\n                \"postalAddress\": \"velislava t.\"\n            },\n            \"cartArticles\": [\n                {\n                    \"cartArticleId\": 34,\n                    \"cartId\": 19,\n                    \"articleId\": 2,\n                    \"quantity\": 2,\n                    \"article\": {\n                        \"articleId\": 2,\n                        \"name\": \"ACME HD11 1024GB\",\n                        \"categoryId\": 5,\n                        \"excerpt\": \"neki kratki tekst 2\",\n                        \"description\": \"neki malo duzi tekst o proizvodu\",\n                        \"status\": \"visible\",\n                        \"isPromoted\": 1,\n                        \"createdAt\": \"2020-08-17T22:19:50.000Z\",\n                        \"category\": {\n                            \"categoryId\": 5,\n                            \"name\": \"hard\",\n                            \"imagePath\": \"assets/pc/memory/hdd.jpg\",\n                            \"parentCategoryId\": 4\n                        },\n                        \"articlePrices\": [\n                            {\n                                \"articlePriceId\": 3,\n                                \"articleId\": 2,\n                                \"price\": \"56.89\",\n                                \"createdAt\": \"2020-08-17T22:19:50.000Z\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    }\n]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjo3LCJ1c2VybmFtZSI6ImFkbWlubm4iLCJleHQiOjE1OTk2NTYzNzIuODU2LCJpcCI6Ijo6MSIsInVhIjoiUG9zdG1hblJ1bnRpbWUvNy4yNi4zIiwiaWF0IjoxNTk4NDQ2NzcyfQ._dxC37PTOzyDWNv9K4bFuAehJL3edtDPD1ewg1hjcm4",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7d7f6688-6bc9-49c1-9e2c-15d14d367311",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b48a60f2-f78d-4b52-803e-90560518c86a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"auth": {
@@ -1715,7 +2380,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjo3LCJ1c2VybmFtZSI6ImFkbWluIiwiZXh0IjoxNTk5NDMyMzAwLjg1NiwiaXAiOiI6OjEiLCJ1YSI6IlBvc3RtYW5SdW50aW1lLzcuMjYuMyIsImlhdCI6MTU5ODIyMjcwMH0.ksGljiQNEihUcxmso_qR4g7ogOM5Zs1ngt4G2SPyIiY",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjo3LCJ1c2VybmFtZSI6ImFkbWlubm4iLCJleHQiOjE1OTk2NjYwNDEuODA0LCJpcCI6Ijo6MSIsInVhIjoiUG9zdG1hblJ1bnRpbWUvNy4yNi41IiwiaWF0IjoxNTk5NjY1NzQxfQ.Pmo9jOjbaGBklWvJ72BNN7Ygq2QZhkgOulnS1rnQzs0",
 				"type": "string"
 			}
 		]
